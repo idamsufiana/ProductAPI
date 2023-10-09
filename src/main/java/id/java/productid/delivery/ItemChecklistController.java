@@ -17,7 +17,7 @@ import id.java.productid.model.ItemName;
 import id.java.productid.model.Itemdata;
 import id.java.productid.service.ChecklistService;
 
-@RequestMapping("/item/checklist")
+@RequestMapping("/api")
 @RestController
 public class ItemChecklistController {
 
@@ -32,7 +32,7 @@ public class ItemChecklistController {
          
     }
 
-    @GetMapping(value = "/checklist")
+    @GetMapping(value = "/checklist/item")
     @PreAuthorize("hasRole('ADMIN')")
     public List<ItemName> findAll(@RequestParam(defaultValue = "0") int page,
                                     @RequestParam(defaultValue = "10") int size) {

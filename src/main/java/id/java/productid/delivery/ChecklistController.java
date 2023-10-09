@@ -18,14 +18,14 @@ import id.java.productid.model.ChecklistData;
 import id.java.productid.service.ChecklistService;
 
 
-@RequestMapping("/checklist")
+@RequestMapping("/api")
 @RestController
 public class ChecklistController {
 
     @Autowired
     ChecklistService checklistService;
 
-    @GetMapping(value = "/checklist")
+    @GetMapping(value ="/checklist")
     @PreAuthorize("hasRole('ADMIN')")
     public List<Checklist> findAll(@RequestParam(defaultValue = "0") int page,
                                     @RequestParam(defaultValue = "10") int size) {
