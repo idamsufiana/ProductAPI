@@ -1,6 +1,6 @@
 package id.java.productid.model;
 
-public class DataSatu {
+public class Itemdata {
 
     private String Name;
 

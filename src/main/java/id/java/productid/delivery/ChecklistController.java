@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.java.productid.model.Checklist;
-import id.java.productid.model.DataSatu;
+import id.java.productid.model.ChecklistData;
 import id.java.productid.service.ChecklistService;
 
 
@@ -35,7 +35,7 @@ public class ChecklistController {
 
     @PostMapping(value = "/checklist")
     @PreAuthorize("hasRole('ADMIN')")
-    public void create(@RequestBody DataSatu dataSatu) {
+    public void create(@RequestBody ChecklistData dataSatu) {
         checklistService.create(dataSatu);
          
     }

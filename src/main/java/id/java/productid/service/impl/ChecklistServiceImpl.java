@@ -7,8 +7,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import id.java.productid.model.Checklist;
-import id.java.productid.model.DataSatu;
+import id.java.productid.model.ChecklistData;
+import id.java.productid.model.ItemName;
+import id.java.productid.model.Itemdata;
 import id.java.productid.repository.ChecklistRepository;
+import id.java.productid.repository.ItemRepository;
 import id.java.productid.service.ChecklistService;
 
 @Service
@@ -16,6 +19,9 @@ public class ChecklistServiceImpl implements ChecklistService{
 
     @Autowired
     ChecklistRepository checklistRepository;
+
+    @Autowired
+    ItemRepository itemRepository;
 
     @Override
     public List<Checklist> findAll(int page, int size) {
@@ -27,12 +33,21 @@ public class ChecklistServiceImpl implements ChecklistService{
     }
 
     @Override
-    public void create(DataSatu dataSatu){
+    public void create(ChecklistData dataSatu){
         Checklist caseSatu = new Checklist();
         caseSatu.setName(dataSatu.getName());
         checklistRepository.save(caseSatu);
     }
 
+    @Override
+    public void createItem(int id, Itemdata dataSatu){
+        Checklist caseSatu = checklistRepository.findById(id).get();
+        ItemName item = new ItemName();
+        item.setName(dataSatu.getName());
+        itemRepository.save(item);
+        caseSatu.setItemName(item);
+        checklistRepository.save(caseSatu);
+    }
 
     @Override
     public void delete(int id){
