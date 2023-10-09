@@ -15,4 +15,5 @@ public interface ChecklistService {
     void createItem(int id, Itemdata dataSatu);
     List<ItemName> findAllItem(int page, int size);
     ItemName findItembyId(int id);
+    void deleteItem(int CHeckListid, int ItemId);
 }

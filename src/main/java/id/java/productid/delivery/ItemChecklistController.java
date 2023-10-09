@@ -42,5 +42,15 @@ public class ItemChecklistController {
     public ItemName findItembyID(@PathVariable int id) {
         return checklistService.findItembyId(id); 
     }
+
+    //update 
+
+    //delete
+    @GetMapping(value = "/checklist/{Checklistid}/Item/{Itemid}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deleteByID(@PathVariable int Checklistid, @PathVariable int Itemid) {
+        checklistService.deleteItem(Checklistid, Itemid); 
+    }
+    //rename
     
 }

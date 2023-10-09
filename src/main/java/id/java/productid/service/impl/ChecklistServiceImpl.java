@@ -68,5 +68,12 @@ public class ChecklistServiceImpl implements ChecklistService{
     public ItemName findItembyId(int id) {
         return checklistRepository.findById(id).get().getItemName();
     }
+
+    @Override
+    public void deleteItem(int CHeckListid, int ItemId){
+        Checklist check = checklistRepository.findById(CHeckListid).get();
+        ItemName item = itemRepository.findById(check.getId()).get();
+        itemRepository.deleteById(item.getId());
+    }
     
 }
