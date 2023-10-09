@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.java.productid.model.Checklist;
 import id.java.productid.model.ItemName;
 import id.java.productid.model.Itemdata;
 import id.java.productid.service.ChecklistService;
@@ -35,6 +34,13 @@ public class ItemChecklistController {
     public List<ItemName> findAll(@RequestParam(defaultValue = "0") int page,
                                     @RequestParam(defaultValue = "10") int size) {
         return checklistService.findAllItem(page, size); 
+    }
+
+
+    @GetMapping(value = "/checklist/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ItemName findItembyID(@PathVariable int id) {
+        return checklistService.findItembyId(id); 
     }
     
 }

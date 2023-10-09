@@ -63,5 +63,10 @@ public class ChecklistServiceImpl implements ChecklistService{
         return itemRepository.findAll(pageRequest)
                 .getContent();
     }
+
+    @Override
+    public ItemName findItembyId(int id) {
+        return checklistRepository.findById(id).get().getItemName();
+    }
     
 }
