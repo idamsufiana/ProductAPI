@@ -107,5 +107,12 @@ public class AuthController {
     return ResponseEntity.ok(new MessageResponse(appProperties.getSuccessReg()));
   }
 
+  @PostMapping("/signout")
+  public ResponseEntity<?> logoutUser() {
+    ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
+    return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
+        .body(new MessageResponse(appProperties.getSignOut()));
+  }
+
     
 }
