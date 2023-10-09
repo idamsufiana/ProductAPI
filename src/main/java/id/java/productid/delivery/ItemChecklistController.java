@@ -17,7 +17,7 @@ import id.java.productid.model.ItemName;
 import id.java.productid.model.Itemdata;
 import id.java.productid.service.ChecklistService;
 
-@RequestMapping("item/checklist")
+@RequestMapping("/item/checklist")
 @RestController
 public class ItemChecklistController {
 
