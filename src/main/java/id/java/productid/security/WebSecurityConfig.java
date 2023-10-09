@@ -97,7 +97,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
         .authorizeHttpRequests(auth -> 
           auth.requestMatchers("/api/**").permitAll()
               .requestMatchers("/checklist/**").permitAll()
-              .requestMatchers("item/checklist/**").permitAll()
+              .requestMatchers("/item/checklist/**").permitAll()
               .anyRequest().authenticated()
         );
     
