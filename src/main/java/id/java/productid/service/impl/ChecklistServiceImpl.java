@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import id.java.productid.config.AppProperties;
 import id.java.productid.model.Checklist;
 import id.java.productid.model.ChecklistData;
 import id.java.productid.model.ItemName;
@@ -13,7 +14,9 @@ import id.java.productid.model.Itemdata;
 import id.java.productid.repository.ChecklistRepository;
 import id.java.productid.repository.ItemRepository;
 import id.java.productid.service.ChecklistService;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class ChecklistServiceImpl implements ChecklistService{
 
@@ -23,6 +26,8 @@ public class ChecklistServiceImpl implements ChecklistService{
     @Autowired
     ItemRepository itemRepository;
 
+    @Autowired
+    AppProperties appProperties;
     @Override
     public List<Checklist> findAll(int page, int size) {
         // page -> 0, can't minus
@@ -41,12 +46,17 @@ public class ChecklistServiceImpl implements ChecklistService{
 
     @Override
     public void createItem(int id, Itemdata dataSatu){
-        Checklist caseSatu = checklistRepository.findById(id).get();
-        ItemName item = new ItemName();
-        item.setName(dataSatu.getName());
-        itemRepository.save(item);
-        caseSatu.setItemName(item);
-        checklistRepository.save(caseSatu);
+        try {
+            Checklist caseSatu = checklistRepository.findById(id).get();
+            ItemName item = new ItemName();
+            item.setName(dataSatu.getName());
+            itemRepository.save(item);
+            caseSatu.setItemName(item);
+            checklistRepository.save(caseSatu);    
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+        
     }
 
     @Override
@@ -74,6 +84,32 @@ public class ChecklistServiceImpl implements ChecklistService{
         Checklist check = checklistRepository.findById(CHeckListid).get();
         ItemName item = itemRepository.findById(check.getId()).get();
         itemRepository.deleteById(item.getId());
+    }
+
+    @Override
+    public void updateStatus(int CHeckListid, int ItemId){
+        try {
+            Checklist check = checklistRepository.findById(CHeckListid).get();
+            ItemName item = itemRepository.findById(check.getId()).get();
+            item.setStatus(appProperties.getSuccess());
+            itemRepository.save(item);    
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            
+        }
+        
+    }
+
+    @Override
+    public void updateName(int CHeckListid, int ItemId, Itemdata data){
+        try {
+            Checklist check = checklistRepository.findById(CHeckListid).get();
+            ItemName item = itemRepository.findById(check.getId()).get();
+            item.setName(data.getName());
+            itemRepository.save(item);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
     }
     
 }

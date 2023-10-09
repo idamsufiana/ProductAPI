@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +44,12 @@ public class ItemChecklistController {
         return checklistService.findItembyId(id); 
     }
 
-    //update 
+    //update status
+    @PutMapping(value = "/checklist/{Checklistid}/Item/{Itemid}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void updateStatus(@PathVariable int Checklistid, @PathVariable int Itemid) {
+        checklistService.updateStatus(Checklistid, Itemid); 
+    } 
 
     //delete
     @GetMapping(value = "/checklist/{Checklistid}/Item/{Itemid}")
@@ -52,5 +58,11 @@ public class ItemChecklistController {
         checklistService.deleteItem(Checklistid, Itemid); 
     }
     //rename
+
+    @PutMapping(value = "/checklist/{Checklistid}/Item/{Itemid}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void updateName(@PathVariable int Checklistid, @PathVariable int Itemid, @RequestBody Itemdata data) {
+        checklistService.deleteItem(Checklistid, Itemid); 
+    }
     
 }

@@ -16,4 +16,6 @@ public interface ChecklistService {
     List<ItemName> findAllItem(int page, int size);
     ItemName findItembyId(int id);
     void deleteItem(int CHeckListid, int ItemId);
+    void updateStatus(int CHeckListid, int ItemId);
+    void updateName(int CHeckListid, int ItemId, Itemdata data);
 }

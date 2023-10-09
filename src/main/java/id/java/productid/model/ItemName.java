@@ -15,6 +15,8 @@ public class ItemName {
     private Integer id;
     @Column
     private String Name;
+    @Column
+    private String Status;
     public Integer getId() {
         return id;
     }
@@ -26,6 +28,12 @@ public class ItemName {
     }
     public void setName(String name) {
         Name = name;
+    }
+    public String getStatus() {
+        return Status;
+    }
+    public void setStatus(String status) {
+        Status = status;
     }
 
     
