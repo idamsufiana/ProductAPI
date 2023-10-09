@@ -43,7 +43,7 @@ public class ChecklistController {
 
     @DeleteMapping(value = "/checklist/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public void create(@PathVariable int id) {
+    public void delete(@PathVariable int id) {
         
         checklistService.delete(id);
          
