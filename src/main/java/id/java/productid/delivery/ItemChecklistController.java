@@ -62,7 +62,7 @@ public class ItemChecklistController {
     @PutMapping(value = "/checklist/{Checklistid}/Item/{Itemid}")
     @PreAuthorize("hasRole('ADMIN')")
     public void updateName(@PathVariable int Checklistid, @PathVariable int Itemid, @RequestBody Itemdata data) {
-        checklistService.deleteItem(Checklistid, Itemid); 
+        checklistService.updateName(Checklistid, Itemid, data); 
     }
     
 }
