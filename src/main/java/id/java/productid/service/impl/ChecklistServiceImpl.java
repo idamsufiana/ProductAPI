@@ -54,5 +54,14 @@ public class ChecklistServiceImpl implements ChecklistService{
         checklistRepository.findById(id);
         checklistRepository.deleteById(id);
     }
+
+    @Override
+    public List<ItemName> findAllItem(int page, int size) {
+        // page -> 0, can't minus
+        // size -> 0, can't minus
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return itemRepository.findAll(pageRequest)
+                .getContent();
+    }
     
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import id.java.productid.model.Checklist;
 import id.java.productid.model.ChecklistData;
+import id.java.productid.model.ItemName;
 import id.java.productid.model.Itemdata;
 
 public interface ChecklistService {
@@ -12,4 +13,5 @@ public interface ChecklistService {
     void create(ChecklistData dataSatu);
     void delete(int id);
     void createItem(int id, Itemdata dataSatu);
+    List<ItemName> findAllItem(int page, int size);
 }
