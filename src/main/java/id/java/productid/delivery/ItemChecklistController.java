@@ -47,21 +47,21 @@ public class ItemChecklistController {
     }
 
     //update status
-    @PutMapping(value = "/checklist/{Checklistid}/Item/{Itemid}")
+    @PutMapping(value = "/checklist/{Checklistid}/item/{Itemid}")
     @PreAuthorize("hasRole('ADMIN')")
     public void updateStatus(@PathVariable int Checklistid, @PathVariable int Itemid) {
         checklistService.updateStatus(Checklistid, Itemid); 
     } 
 
     //delete
-    @GetMapping(value = "/checklist/{Checklistid}/Item/{Itemid}")
+    @GetMapping(value = "/checklist/{Checklistid}/item/{Itemid}")
     @PreAuthorize("hasRole('ADMIN')")
     public void deleteByID(@PathVariable int Checklistid, @PathVariable int Itemid) {
         checklistService.deleteItem(Checklistid, Itemid); 
     }
     //rename
 
-    @PutMapping(value = "/checklist/{Checklistid}/Item/{Itemid}")
+    @PutMapping(value = "/checklist/{Checklistid}/item/rename{Itemid}")
     @PreAuthorize("hasRole('ADMIN')")
     public void updateName(@PathVariable int Checklistid, @PathVariable int Itemid, @RequestBody Itemdata data) {
         checklistService.updateName(Checklistid, Itemid, data); 
